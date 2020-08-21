@@ -1,0 +1,3 @@
+[submodule "runtime/3rdparty/AdaptiveCards"]
+	path = runtime/3rdparty/AdaptiveCards
+	url = https://github.com/xieofxie/AdaptiveCards.git

@@ -1,0 +1,10 @@
+[import](common.lg)
+
+# TextInput_Prompt_QEr755()
+- IF: ${user.name == null}
+- What should I call you?
+- ELSE:
+- ${user.name}, what should I call you instead?
+
+# SendActivity_h84z1h()
+- OK, I will call you ${user.name}.

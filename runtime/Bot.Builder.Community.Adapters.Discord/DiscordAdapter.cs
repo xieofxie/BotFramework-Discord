@@ -65,26 +65,35 @@ namespace Bot.Builder.Community.Adapters.Discord
         {
             _ = Task.Run(async () => 
             {
-                if (message.Author.Id == _client.CurrentUser.Id)
+                try
                 {
-                    return;
-                }
+                    if (message.Author.Id == _client.CurrentUser.Id)
+                    {
+                        return;
+                    }
 
-                if (message.Channel is IDMChannel)
-                {
-                }
-                else if (message.MentionedUsers.All(user => user.Id != _client.CurrentUser.Id))
-                {
-                    return;
-                }
+                    bool directMessage = false;
+                    if (message.Channel is IDMChannel)
+                    {
+                        directMessage = true;
+                    }
+                    else if (message.MentionedUsers.All(user => user.Id != _client.CurrentUser.Id))
+                    {
+                        return;
+                    }
 
-                var cancellationToken = default(CancellationToken);
-                var activity = _mapper.MessageToActivity(message);
-                var context = new TurnContextEx(this, activity);
-                await RunPipelineAsync(context, _bot.OnTurnAsync, cancellationToken).ConfigureAwait(false);
-                foreach (var sentActivity in context.SentActivities)
+                    var cancellationToken = default(CancellationToken);
+                    var activity = _mapper.MessageToActivity(message, directMessage);
+                    var context = new TurnContextEx(this, activity);
+                    await RunPipelineAsync(context, _bot.OnTurnAsync, cancellationToken).ConfigureAwait(false);
+                    foreach (var sentActivity in context.SentActivities)
+                    {
+                        await _mapper.ActivityToMessageAsync(message, directMessage, sentActivity, cancellationToken).ConfigureAwait(false);
+                    }
+                }
+                catch (Exception ex)
                 {
-                    await _mapper.ActivityToMessageAsync(message.Channel, sentActivity, cancellationToken).ConfigureAwait(false);
+                    Console.WriteLine(ex.Message);
                 }
             });
 

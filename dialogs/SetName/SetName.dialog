@@ -1,0 +1,53 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "xC5bnD",
+    "name": "SetName"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "id": "QROM0V"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "QEr755"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_QEr755()}",
+          "property": "dialog.name",
+          "value": "=@name"
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "u3diVv"
+          },
+          "assignments": [
+            {
+              "property": "user.name",
+              "value": "=dialog.name"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "h84z1h"
+          },
+          "activity": "${SendActivity_h84z1h()}"
+        }
+      ]
+    }
+  ],
+  "generator": "SetName.lg"
+}
