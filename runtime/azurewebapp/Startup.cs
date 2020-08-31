@@ -3,6 +3,8 @@
 
 using System;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Bot.Builder.Community.Adapters.Discord;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
@@ -206,6 +208,12 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
                     s.GetService<IBot>());
                 SetBotAdapter(adapter, storage, settings, userState, conversationState, s, s.GetService<TelemetryInitializerMiddleware>());
                 return adapter;
+            });
+
+            Task.Run(async () =>
+            {
+                var client = new HttpClient();
+                await client.GetAsync(settings.HostUrl + "/discord");
             });
         }
 

@@ -26,6 +26,8 @@ namespace Microsoft.BotFramework.Composer.Core.Settings
 
         public string DiscordToken { get; set; }
 
+        public string HostUrl { get; set; }
+
         public class BlobStorageConfiguration
         {
             public string ConnectionString { get; set; }
