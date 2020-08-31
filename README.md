@@ -14,6 +14,10 @@ https://github.com/discord-net/Discord.Net
 
 ## Features
 
+### Cached Luis Recognizer
+
+Cache Luis responses in LRU, so it will save your money.
+
 ## ToDos
 
 ### Bot singleton depends on service

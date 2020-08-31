@@ -25,7 +25,7 @@
           "allowInterruptions": false,
           "prompt": "${TextInput_Prompt_QEr755()}",
           "property": "dialog.name",
-          "value": "=@name"
+          "value": "=@personName"
         },
         {
           "$kind": "Microsoft.SetProperties",

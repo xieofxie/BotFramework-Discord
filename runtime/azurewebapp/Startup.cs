@@ -28,6 +28,7 @@ using Microsoft.Bot.Builder.Skills;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.BotFramework.Composer.Core;
 using Microsoft.BotFramework.Composer.Core.Settings;
+using Microsoft.BotFramework.Composer.CustomAction.CachedLuis;
 
 //using Microsoft.BotFramework.Composer.CustomAction;
 using Microsoft.Extensions.Configuration;
@@ -145,7 +146,8 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
             ComponentRegistration.Add(new AdaptiveComponentRegistration());
             ComponentRegistration.Add(new LanguageGenerationComponentRegistration());
             ComponentRegistration.Add(new QnAMakerComponentRegistration());
-            ComponentRegistration.Add(new LuisComponentRegistration());
+
+            // ComponentRegistration.Add(new LuisComponentRegistration());
 
             // This is for custom action component registration.
             //ComponentRegistration.Add(new CustomActionComponentRegistration());
@@ -173,9 +175,11 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
                 return new TelemetryInitializerMiddleware(httpContextAccessor, telemetryLoggerMiddleware, settings.Telemetry.LogActivities);
             });
 
+            var cachedLuisManager = new CachedLuisManager(settings.CachedLuis);
+
             // Configure bot loading path
             var botDir = settings.Bot;
-            var resourceExplorer = new ResourceExplorer().AddFolder(botDir);
+            var resourceExplorer = new ResourceExplorer().AddFolder(botDir).RegisterType(LuisAdaptiveRecognizer.Kind, typeof(CachedLuisRecognizer), new CachedLuisLoader(cachedLuisManager));
             var rootDialog = GetRootDialog(botDir);
 
             var defaultLocale = Configuration.GetValue<string>("defaultLocale") ?? "en-us";

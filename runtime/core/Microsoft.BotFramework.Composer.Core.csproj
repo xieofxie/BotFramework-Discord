@@ -27,4 +27,8 @@
     <PackageReference Include="Microsoft.Bot.Connector" Version="4.9.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\customaction\Microsoft.BotFramework.Composer.CustomAction.csproj" />
+  </ItemGroup>
+
 </Project>

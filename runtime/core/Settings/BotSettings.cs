@@ -3,6 +3,7 @@
 
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Bot.Builder.Azure;
+using Microsoft.BotFramework.Composer.CustomAction.CachedLuis;
 
 namespace Microsoft.BotFramework.Composer.Core.Settings
 {
@@ -27,6 +28,8 @@ namespace Microsoft.BotFramework.Composer.Core.Settings
         public string DiscordToken { get; set; }
 
         public string HostUrl { get; set; }
+
+        public CachedLuisOptions CachedLuis { get; set; } = new CachedLuisOptions();
 
         public class BlobStorageConfiguration
         {
