@@ -29,6 +29,7 @@ using Microsoft.Bot.Connector.Authentication;
 using Microsoft.BotFramework.Composer.Core;
 using Microsoft.BotFramework.Composer.Core.Settings;
 using Microsoft.BotFramework.Composer.CustomAction.CachedLuis;
+using Microsoft.BotFramework.Composer.CustomAction.Middlewares;
 
 //using Microsoft.BotFramework.Composer.CustomAction;
 using Microsoft.Extensions.Configuration;
@@ -100,6 +101,7 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
               .UseStorage(storage)
               .UseBotState(userState, conversationState)
               .Use(new RegisterClassMiddleware<IConfiguration>(Configuration))
+              .Use(new HandleGroupMentionMiddleware())
               .Use(telemetryInitializerMiddleware);
 
             // Configure Middlewares

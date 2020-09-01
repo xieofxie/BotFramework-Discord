@@ -18,6 +18,10 @@ https://github.com/discord-net/Discord.Net
 
 Cache Luis responses in LRU, so it will save your money.
 
+### HandleGroupMentionMiddleware
+
+Remove mention of bot and add mention of the user for group conversation.
+
 ## ToDos
 
 ### Bot singleton depends on service
