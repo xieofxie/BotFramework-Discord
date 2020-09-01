@@ -12,6 +12,10 @@ https://github.com/discord-net/Discord.Net
 
 ## Examples
 
+### Tell Joke
+
+Tell a joke about someone with his name replacement
+
 ## Features
 
 ### Cached Luis Recognizer

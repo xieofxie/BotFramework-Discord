@@ -1,0 +1,96 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "CQBv0h",
+    "name": "TellJoke"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "id": "ESItge"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "QWJFS3"
+          },
+          "assignments": [
+            {
+              "property": "dialog.thisId",
+              "value": "=turn.activity.recipient.id"
+            },
+            {
+              "property": "dialog.sent",
+              "value": "=false"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "YYihk3"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "turn.activity.entities",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "PnAQnI"
+              },
+              "condition": "dialog.foreach.value.type=='mention'&&dialog.foreach.value.mentioned.id!=dialog.thisId",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperties",
+                  "$designer": {
+                    "id": "6j3DnT"
+                  },
+                  "assignments": [
+                    {
+                      "property": "dialog.sent",
+                      "value": "=true"
+                    },
+                    {
+                      "property": "dialog.to",
+                      "value": "=dialog.foreach.value"
+                    }
+                  ]
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "4jhi3P"
+                  },
+                  "activity": "${SendActivity_4jhi3P()}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "wNiksU"
+          },
+          "condition": "dialog.sent==false",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "mC1uce"
+              },
+              "activity": "${SendActivity_mC1uce()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "TellJoke.lg"
+}

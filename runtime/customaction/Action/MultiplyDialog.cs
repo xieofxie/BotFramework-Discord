@@ -22,7 +22,7 @@ namespace Microsoft.BotFramework.Composer.CustomAction
         }
 
         [JsonProperty("$kind")]
-        public const string Kind = "MultiplyDialog";
+        public const string Kind = "CustomAction.MultiplyDialog";
 
         /// <summary>
         /// Gets or sets memory path to bind to arg1 (ex: conversation.width).

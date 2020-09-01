@@ -1,0 +1,57 @@
+[import](common.lg)
+
+> http://www.johndclare.net/Russ12_Jokes.htm
+# Jokes(to)
+- ```This is Armenian Radio; our listeners asked us: “Will ${if(to,to,'people')} have money when communism is built?”
+
+We’re answering: “Some will, some will not.”
+```
+- ```This is Armenian Radio; our listeners asked us: “What shall ${if(to,to,'we')} do if suddenly ${if(to,to,'we')} feel a desire to work?”
+
+We’re answering: “Just rest for a while on a sofa.   It will pass.”
+```
+- ```${if(to,to,'Ivanov')} applied to the Communist Party. The party committee conducts an interview.
+
+"Comrade ${if(to,to,'Ivanov')}, do you smoke?"
+
+"Yes, I do a little."
+
+"Do you know that comrade Lenin did not smoke and advised other communists not to smoke?"
+
+"If comrade Lenin said so, I shall cease smoking."
+
+"Do you drink?"
+
+"Yes, a little."
+
+"Comrade Lenin strongly condemned drunkenness."
+
+"Then I shall cease drinking."
+
+"Comrade ${if(to,to,'Ivanov')}, what about women?"
+
+"A little...."
+
+"Do you know that comrade Lenin strongly condemned amoral behavior?"
+
+"If comrade Lenin condemned, I shall not love them any longer."
+
+"Comrade ${if(to,to,'Ivanov')}, will you be ready to sacrifice your life for the Party?"
+
+"Of course. Who needs such life?"
+```
+- ```${if(to,to,'A Polish tourist')} comes back home after visiting the USSR. He carries two very large and heavy suitcases. On his wrist is a new Soviet-made watch. He tells the customs man: "This is a new Soviet watch. It's a wonder unknown in the capitalist countries. You see, it shows time, the rate of your pulse beats, the phases of the Moon, the weather in Warsaw, Moscow, and New York, and more and more!"
+
+"Yes, it's a wonder," the customs man agrees. "And what is it you have in these big suitcases?"
+
+"Oh, it's just the batteries for that watch."
+```
+
+# SendActivity_4jhi3P()
+[Activity
+type = message
+text = ${Jokes(dialog.to.mentioned.name)} ${dialog.to.text}
+entities = ${createArray(dialog.to)}
+]
+# SendActivity_mC1uce()
+- ${Jokes(null)}

@@ -28,6 +28,7 @@ using Microsoft.Bot.Builder.Skills;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.BotFramework.Composer.Core;
 using Microsoft.BotFramework.Composer.Core.Settings;
+using Microsoft.BotFramework.Composer.CustomAction;
 using Microsoft.BotFramework.Composer.CustomAction.CachedLuis;
 using Microsoft.BotFramework.Composer.CustomAction.Middlewares;
 
@@ -152,7 +153,7 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
             // ComponentRegistration.Add(new LuisComponentRegistration());
 
             // This is for custom action component registration.
-            //ComponentRegistration.Add(new CustomActionComponentRegistration());
+            ComponentRegistration.Add(new CustomActionComponentRegistration());
 
             // Register the skills client and skills request handler.
             var skillConversationIdFactory = new SkillConversationIdFactory(storage);
