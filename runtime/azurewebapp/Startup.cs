@@ -32,6 +32,7 @@ using Microsoft.BotFramework.Composer.Core.Settings;
 using Microsoft.BotFramework.Composer.CustomAction;
 using Microsoft.BotFramework.Composer.CustomAction.CachedLuis;
 using Microsoft.BotFramework.Composer.CustomAction.Middlewares;
+using Microsoft.BotFramework.Composer.CustomAction.Utils;
 
 //using Microsoft.BotFramework.Composer.CustomAction;
 using Microsoft.Extensions.Configuration;
@@ -133,9 +134,9 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
             var storage = ConfigureStorage(settings);
             services.AddSingleton(storage);
             var userState = new UserState(storage);
-            var conversationState = new ConversationState(storage);
+            var conversationState = new ConversationUserState(storage);
             services.AddSingleton(userState);
-            services.AddSingleton(conversationState);
+            services.AddSingleton<ConversationState>(conversationState);
 
             // Create the credential provider to be used with the Bot Framework Adapter.
             services.AddSingleton<ICredentialProvider, ConfigurationCredentialProvider>();
