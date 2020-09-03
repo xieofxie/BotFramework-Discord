@@ -37,3 +37,5 @@ https://github.com/microsoft/botbuilder-dotnet/issues/4521
 #### How to tell the difference between shared conversation and private conversation in group conversation?
 
 Before @ and after @?
+
+### Convert not mentioned group messages to events for statistics

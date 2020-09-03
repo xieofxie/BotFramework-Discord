@@ -27,13 +27,8 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
             {
                 var env = hostingContext.HostingEnvironment;
 
-                builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-                if (env.IsDevelopment())
-                {
-                    // Local Debug
-                    builder.AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true);
-                }
+                // Use Composer bot path adapter
+                builder.UseBotPathConverter(env.IsDevelopment());
 
                 var configuration = builder.Build();
 
@@ -43,15 +38,8 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
 
                 builder.AddJsonFile(configFile, optional: true, reloadOnChange: true);
 
-                // Need to put this part here to override the any customized settings
-                if (!env.IsDevelopment())
-                {
-                    //Azure Deploy
-                    builder.AddJsonFile("appsettings.deployment.json", optional: true, reloadOnChange: true);
-                }
-
-                builder.UseLuisConfigAdapter()
-                    .UseLuisSettings();
+                // Use Composer luis and qna settings extensions
+                builder.UseComposerSettings();
 
                 builder.AddEnvironmentVariables()
                        .AddCommandLine(args);
