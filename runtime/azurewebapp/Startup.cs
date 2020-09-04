@@ -102,9 +102,12 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
         {
             adapter
               .UseStorage(storage)
-              .UseBotState(userState, conversationState)
+              .UseBotState(userState)
+              .Use(new RegisterClassMiddleware<ConversationState>(conversationState, typeof(ConversationState).FullName))
               .Use(new RegisterClassMiddleware<IConfiguration>(Configuration))
+              .Use(new RegisterClassMiddleware<BotAdapter>(adapter))
               .Use(new HandleGroupMentionMiddleware())
+              .Use(new ReferenceMiddleware())
               .Use(telemetryInitializerMiddleware);
 
             // Configure Middlewares

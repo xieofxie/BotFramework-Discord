@@ -92,5 +92,6 @@
       ]
     }
   ],
-  "generator": "TellJoke.lg"
+  "generator": "TellJoke.lg",
+  "id": "TellJoke"
 }

@@ -1,0 +1,46 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/microsoft/botframework-sdk/master/schemas/component/component.schema",
+  "$role": "implements(Microsoft.IDialog)",
+  "type": "object",
+  "title": "CustomAction.InvokeProactiveActivity",
+  "description": "Invoke a proactive activity (usually event) to bot which allows you to send, execute logic etc.",
+  "required": [
+    "identifier"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Id",
+      "description": "Optional id for the dialog."
+    },
+    "identifier": {
+      "$ref": "https://raw.githubusercontent.com/microsoft/botframework-sdk/master/schemas/component/definitions.schema#/definitions/stringExpression",
+      "title": "Identifier",
+      "description": "If exists, will cancel the last one"
+    },
+    "activity": {
+      "$kind": "Microsoft.IActivityTemplate",
+      "title": "Activity",
+      "description": "If null, stop the Identifier"
+    },
+    "invokeFrom": {
+      "$ref": "https://raw.githubusercontent.com/microsoft/botframework-sdk/master/schemas/component/definitions.schema#/definitions/stringExpression",
+      "title": "InvokeFrom",
+      "description": "Allow invoke on behalf of other one",
+      "default": "turn.activity.from"
+    },
+    "delay": {
+      "$ref": "https://raw.githubusercontent.com/microsoft/botframework-sdk/master/schemas/component/definitions.schema#/definitions/integerExpression",
+      "title": "Delay",
+      "description": "Delay in milliseconds"
+    },
+    "resultProperty": {
+      "$ref": "https://raw.githubusercontent.com/microsoft/botframework-sdk/master/schemas/component/definitions.schema#/definitions/stringExpression",
+      "title": "Result property",
+      "description": "Result of starting",
+      "examples": [
+        "dialog.result"
+      ]
+    }
+  }
+}

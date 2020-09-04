@@ -53,3 +53,7 @@ For item price, weapon damage etc.
 ### Proactive/time out prompt
 
 Like time limited quiz
+
+## Invoke Proactive is a workaround
+
+https://github.com/microsoft/botbuilder-dotnet/issues/4018

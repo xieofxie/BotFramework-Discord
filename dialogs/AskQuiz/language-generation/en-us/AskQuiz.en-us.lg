@@ -1,0 +1,7 @@
+[import](common.lg)
+
+# CustomAction.InvokeProactiveActivity_Activity_nWrJeM()
+[Activity
+	type = event
+    name = Quiz
+]

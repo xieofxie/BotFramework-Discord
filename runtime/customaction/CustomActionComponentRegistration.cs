@@ -2,6 +2,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs.Debugging;
 using Microsoft.Bot.Builder.Dialogs.Declarative;
 using Microsoft.Bot.Builder.Dialogs.Declarative.Resources;
+using Microsoft.BotFramework.Composer.CustomAction.Action;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -13,6 +14,7 @@ namespace Microsoft.BotFramework.Composer.CustomAction
         {
             // Actions
             yield return new DeclarativeType<MultiplyDialog>(MultiplyDialog.Kind);
+            yield return new DeclarativeType<InvokeProactiveActivity>(InvokeProactiveActivity.Kind);
         }
 
         public IEnumerable<JsonConverter> GetConverters(ResourceExplorer resourceExplorer, SourceContext sourceContext)

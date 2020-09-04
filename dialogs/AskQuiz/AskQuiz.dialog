@@ -1,0 +1,35 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "25LJ4u",
+    "name": "AskQuiz",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "vCEYUM"
+      },
+      "actions": [
+        {
+          "$kind": "CustomAction.InvokeProactiveActivity",
+          "$designer": {
+            "id": "nWrJeM"
+          },
+          "identifier": "quiz",
+          "activity": "${CustomAction.InvokeProactiveActivity_Activity_nWrJeM()}",
+          "delay": 1000,
+          "invokeFrom": "turn.activity.from"
+        }
+      ]
+    }
+  ],
+  "generator": "AskQuiz.lg",
+  "recognizer": "AskQuiz.lu.qna",
+  "id": "AskQuiz"
+}
