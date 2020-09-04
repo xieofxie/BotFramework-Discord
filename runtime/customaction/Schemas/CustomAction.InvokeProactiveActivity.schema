@@ -5,7 +5,6 @@
   "title": "CustomAction.InvokeProactiveActivity",
   "description": "Invoke a proactive activity (usually event) to bot which allows you to send, execute logic etc.",
   "required": [
-    "identifier"
   ],
   "properties": {
     "id": {
@@ -16,7 +15,7 @@
     "identifier": {
       "$ref": "https://raw.githubusercontent.com/microsoft/botframework-sdk/master/schemas/component/definitions.schema#/definitions/stringExpression",
       "title": "Identifier",
-      "description": "If exists, will cancel the last one"
+      "description": "If empty, a random one. If already exists, will cancel the last one"
     },
     "activity": {
       "$kind": "Microsoft.IActivityTemplate",

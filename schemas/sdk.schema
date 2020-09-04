@@ -327,7 +327,6 @@
       "title": "CustomAction.InvokeProactiveActivity",
       "description": "Invoke a proactive activity (usually event) to bot which allows you to send, execute logic etc.",
       "required": [
-        "identifier",
         "$kind"
       ],
       "additionalProperties": false,
@@ -345,7 +344,7 @@
         },
         "identifier": {
           "title": "Identifier",
-          "description": "If exists, will cancel the last one",
+          "description": "If empty, a random one. If already exists, will cancel the last one",
           "$role": "expression",
           "oneOf": [
             {

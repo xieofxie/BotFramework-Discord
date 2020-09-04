@@ -37,6 +37,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Bot.Builder.Community.Adapters.Discord\Bot.Builder.Community.Adapters.Discord.csproj" />
     <ProjectReference Include="..\core\Microsoft.BotFramework.Composer.Core.csproj" />
-    <ProjectReference Include="..\customaction\Microsoft.BotFramework.Composer.CustomAction.csproj" />
   </ItemGroup>
 </Project>

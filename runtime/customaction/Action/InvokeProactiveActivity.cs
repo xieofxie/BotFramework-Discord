@@ -31,7 +31,7 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Action
             this.RegisterSourceLocation(callerPath, callerLine);
         }
 
-        // If exists, will cancel the last one
+        // If empty, a random one. If already exists, will cancel the last one
         [JsonProperty("identifier")]
         public StringExpression Identifier { get; set; }
 
@@ -55,12 +55,7 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Action
         public override async Task<DialogTurnResult> BeginDialogAsync(DialogContext dc, object options = null, CancellationToken cancellationToken = default)
         {
             var dcState = dc.State;
-            var identifier = this.Identifier.GetValue(dcState);
-            if (string.IsNullOrEmpty(identifier))
-            {
-                throw new ArgumentNullException(identifier);
-            }
-
+            var identifier = this.Identifier?.GetValue(dcState) ?? Guid.NewGuid().ToString();
             var referenceMiddleware = dc.Context.TurnState.Get<ReferenceMiddleware>();
             var userKey = referenceMiddleware.GetUserKey(dc.Context.Activity);
             var result = false;
