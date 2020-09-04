@@ -81,14 +81,22 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Action
                 {
                     // Get the lastest reference
                     var reference = referenceMiddleware.GetConversationReference(dc.Context.Activity);
-                    reference.User = from;
+                    reference = new ConversationReference
+                    {
+                        ActivityId = reference.ActivityId,
+                        User = from,
+                        Bot = reference.Bot,
+                        Conversation = reference.Conversation,
+                        ChannelId = reference.ChannelId,
+                        Locale = string.IsNullOrEmpty(activity.Locale) ? reference.Locale : activity.Locale,
+                        ServiceUrl = reference.ServiceUrl
+                    };
                     await Task.Delay(delay, cancel);
                     await ((BotAdapter)adapter).ContinueConversationAsync(microsoftAppId, reference, async (tc, ct) =>
                     {
                         // TODO middlewares still use ContinueConversation activity
                         tc.Activity.Type = activity.Type;
                         tc.Activity.Name = activity.Name;
-                        tc.Activity.Locale = activity.Locale;
                         tc.Activity.Text = activity.Text;
                         tc.Activity.Speak = activity.Speak;
                         tc.Activity.Value = activity.Value;

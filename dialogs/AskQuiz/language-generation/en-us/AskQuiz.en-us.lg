@@ -9,7 +9,7 @@
 [Activity
 	type = event
     name = Quiz
-    value = ${turn.activity.recipient.name}
+    value = ${turn.activity.from.name}
     locale = ${turn.activity.locale}
 ]
 # CustomAction.InvokeProactiveActivity_Activity_ftm5v4()

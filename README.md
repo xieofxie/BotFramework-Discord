@@ -16,6 +16,10 @@ https://github.com/discord-net/Discord.Net
 
 Tell a joke about someone with his name replacement
 
+### Ask a Quiz
+
+Ask a quiz for someone else
+
 ## Features
 
 ### Cached Luis Recognizer
@@ -25,6 +29,10 @@ Cache Luis responses in LRU, so it will save your money.
 ### HandleGroupMentionMiddleware
 
 Remove mention of bot and add mention of the user for group conversation.
+
+### InvokeProactiveActivity
+
+Invoke a proactive activity to the bot for yourself or someone else.
 
 ## ToDos
 
@@ -57,3 +65,5 @@ Like time limited quiz
 ## Invoke Proactive is a workaround
 
 https://github.com/microsoft/botbuilder-dotnet/issues/4018
+
+## How to handle <at></at> in utterance for Luis?
