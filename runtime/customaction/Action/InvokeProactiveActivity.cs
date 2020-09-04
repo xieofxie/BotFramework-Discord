@@ -88,6 +88,7 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Action
                         // TODO middlewares still use ContinueConversation activity
                         tc.Activity.Type = activity.Type;
                         tc.Activity.Name = activity.Name;
+                        tc.Activity.Locale = activity.Locale;
                         tc.Activity.Text = activity.Text;
                         tc.Activity.Speak = activity.Speak;
                         tc.Activity.Value = activity.Value;

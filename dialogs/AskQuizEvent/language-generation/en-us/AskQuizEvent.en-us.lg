@@ -1,0 +1,14 @@
+[import](common.lg)
+
+# TextInput_Prompt_XeaTRX()
+- ```${dialog.question}
+
+Source: https://icebreakerideas.com/trick-questions/
+```
+
+# SendActivity_7ybWn7()
+- Great! You are correct!
+# SendActivity_SnRIl8()
+- Sorry, the anwser is ${dialog.answer}.
+# SendActivity_CE9bKi()
+- ${turn.activity.value} asks you a quiz.

@@ -93,5 +93,6 @@
     }
   ],
   "generator": "TellJoke.lg",
-  "id": "TellJoke"
+  "id": "TellJoke",
+  "recognizer": "TellJoke.lu.qna"
 }

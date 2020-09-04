@@ -1,0 +1,109 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "XKrGFh",
+    "name": "AskQuizEvent",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "fXFx8Z"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "9Gfiqf"
+          },
+          "assignments": [
+            {
+              "property": "dialog.questions",
+              "value": "=createArray('What is always coming, but never arrives?','What is it that lives if it is fed, and dies if you give it a drink?','What can one catch that is not thrown?')"
+            },
+            {
+              "property": "dialog.answers",
+              "value": "=createArray('tomorrow','fire','cold')"
+            },
+            {
+              "property": "dialog.choice",
+              "value": "=rand(1,4)-1"
+            },
+            {
+              "property": "dialog.question",
+              "value": "=dialog.questions[dialog.choice]"
+            },
+            {
+              "property": "dialog.answer",
+              "value": "=dialog.answers[dialog.choice]"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "ezs5cA"
+          },
+          "condition": "turn.activity.value != null",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "CE9bKi"
+              },
+              "activity": "${SendActivity_CE9bKi()}"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "XeaTRX"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_XeaTRX()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "dialog.reply"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "hzjPpo"
+          },
+          "condition": "dialog.reply == dialog.answer",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "7ybWn7"
+              },
+              "activity": "${SendActivity_7ybWn7()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "SnRIl8"
+              },
+              "activity": "${SendActivity_SnRIl8()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "AskQuizEvent.lg",
+  "recognizer": "AskQuizEvent.lu.qna",
+  "id": "AskQuizEvent"
+}

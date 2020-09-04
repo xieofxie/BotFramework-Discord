@@ -50,5 +50,6 @@
     }
   ],
   "generator": "SetName.lg",
-  "id": "SetName"
+  "id": "SetName",
+  "recognizer": "SetName.lu.qna"
 }

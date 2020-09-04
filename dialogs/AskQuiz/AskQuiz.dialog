@@ -17,14 +17,83 @@
       },
       "actions": [
         {
-          "$kind": "CustomAction.InvokeProactiveActivity",
+          "$kind": "Microsoft.SetProperties",
           "$designer": {
-            "id": "nWrJeM"
+            "id": "zuCnWo"
           },
-          "identifier": "quiz",
-          "activity": "${CustomAction.InvokeProactiveActivity_Activity_nWrJeM()}",
-          "delay": 1000,
-          "invokeFrom": "turn.activity.from"
+          "assignments": [
+            {
+              "property": "dialog.thisId",
+              "value": "=turn.activity.recipient.id"
+            },
+            {
+              "property": "dialog.sent",
+              "value": "=false"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "rXq2td"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "turn.activity.entities",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "BcD0Yy"
+              },
+              "condition": "dialog.foreach.value.type=='mention'&&dialog.foreach.value.mentioned.id!=dialog.thisId",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperties",
+                  "$designer": {
+                    "id": "MKovqi"
+                  },
+                  "assignments": [
+                    {
+                      "property": "dialog.sent",
+                      "value": "=true"
+                    },
+                    {
+                      "property": "dialog.to",
+                      "value": "=dialog.foreach.value"
+                    }
+                  ]
+                },
+                {
+                  "$kind": "CustomAction.InvokeProactiveActivity",
+                  "$designer": {
+                    "id": "C6SHS7"
+                  },
+                  "invokeFrom": "dialog.to.mentioned",
+                  "activity": "${CustomAction.InvokeProactiveActivity_Activity_C6SHS7()}",
+                  "delay": 1000
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "04Io8p"
+          },
+          "condition": "dialog.sent==false",
+          "actions": [
+            {
+              "$kind": "CustomAction.InvokeProactiveActivity",
+              "$designer": {
+                "id": "ftm5v4"
+              },
+              "invokeFrom": "turn.activity.from",
+              "activity": "${CustomAction.InvokeProactiveActivity_Activity_ftm5v4()}",
+              "delay": 1000
+            }
+          ]
         }
       ]
     }
