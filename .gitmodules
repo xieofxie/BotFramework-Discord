@@ -1,3 +1,6 @@
 [submodule "runtime/3rdparty/AdaptiveCards"]
 	path = runtime/3rdparty/AdaptiveCards
 	url = https://github.com/xieofxie/AdaptiveCards.git
+[submodule "runtime/3rdparty/botbuilder-dotnet"]
+	path = runtime/3rdparty/botbuilder-dotnet
+	url = https://github.com/xieofxie/botbuilder-dotnet.git

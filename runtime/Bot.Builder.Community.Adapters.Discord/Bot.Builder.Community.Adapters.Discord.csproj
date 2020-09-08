@@ -6,10 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Bot.Builder" Version="4.9.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\3rdparty\botbuilder-dotnet\libraries\Microsoft.Bot.Builder\Microsoft.Bot.Builder.csproj" />
     <ProjectReference Include="..\3rdparty\AdaptiveCards\source\dotnet\Library\AdaptiveCards.Rendering.Wpf.Core\AdaptiveCards.Rendering.Wpf.Core.csproj" />
   </ItemGroup>
 
