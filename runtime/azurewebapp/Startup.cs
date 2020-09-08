@@ -106,6 +106,7 @@ namespace Microsoft.BotFramework.Composer.WebAppTemplates
               .Use(new RegisterClassMiddleware<ConversationState>(conversationState, typeof(ConversationState).FullName))
               .Use(new RegisterClassMiddleware<IConfiguration>(Configuration))
               .Use(new RegisterClassMiddleware<BotAdapter>(adapter))
+              .Use(new RegisterClassMiddleware<TaskManager>(new TaskManager()))
               .Use(new HandleGroupMentionMiddleware())
               .Use(new ReferenceMiddleware())
               .Use(telemetryInitializerMiddleware);

@@ -41,12 +41,12 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Middlewares
             return byConversation[GetConversationKey(activity)];
         }
 
-        public string GetUserKey(Activity activity)
+        public static string GetUserKey(Activity activity)
         {
             return $"{activity.ChannelId}/{activity.From.Id}";
         }
 
-        public string GetConversationKey(Activity activity)
+        public static string GetConversationKey(Activity activity)
         {
             return $"{activity.ChannelId}/{activity.Conversation.Id}";
         }
