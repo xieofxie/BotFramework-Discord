@@ -83,7 +83,15 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Utils
             var userKey = ReferenceMiddleware.GetUserKey(context.Activity);
             return taskManager.Start(userKey, identifier, async (CancellationToken cancel) =>
             {
-                await Task.Delay(millisecondsDelay, cancel);
+                try
+                {
+                    await Task.Delay(millisecondsDelay, cancel);
+                }
+                catch (TaskCanceledException ex)
+                {
+                    return;
+                }
+
                 taskManager.Stop(userKey, identifier, false);
                 // Get the lastest reference
                 var reference = referenceMiddleware.GetConversationReference(context.Activity);
@@ -97,6 +105,8 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Utils
                     Locale = string.IsNullOrEmpty(activity.Locale) ? reference.Locale : activity.Locale,
                     ServiceUrl = reference.ServiceUrl
                 };
+
+                // TODO we only cancel delay
                 await ((BotAdapter)adapter).ContinueConversationAsync(microsoftAppId, reference, async (tc, ct) =>
                 {
                     // TODO middlewares still use ContinueConversation activity
@@ -108,7 +118,7 @@ namespace Microsoft.BotFramework.Composer.CustomAction.Utils
                     tc.Activity.Attachments = activity.Attachments;
                     tc.Activity.AttachmentLayout = activity.AttachmentLayout;
                     await bot.OnTurnAsync(tc, ct);
-                }, cancel);
+                }, default(CancellationToken));
             });
         }
     }

@@ -20,6 +20,10 @@ Tell a joke about someone with his name replacement
 
 Ask a quiz for someone else
 
+### Show Cats
+
+The cats can't wait to see you!
+
 ## Features
 
 ### Cached Luis Recognizer
@@ -33,6 +37,10 @@ Remove mention of bot and add mention of the user for group conversation.
 ### InvokeProactiveActivity
 
 Invoke a proactive activity to the bot for yourself or someone else.
+
+### TextInputPlus
+
+Plus timeout. Also wait for this https://github.com/microsoft/botbuilder-dotnet/issues/4555
 
 ## ToDos
 
