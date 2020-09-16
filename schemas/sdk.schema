@@ -14,6 +14,9 @@
       "$ref": "#/definitions/CustomAction.TextInputPlus"
     },
     {
+      "$ref": "#/definitions/CustomAction.WriteStorage"
+    },
+    {
       "$ref": "#/definitions/Microsoft.ActivityTemplate"
     },
     {
@@ -321,6 +324,9 @@
     },
     {
       "$ref": "#/definitions/Microsoft.UrlEntityRecognizer"
+    },
+    {
+      "$ref": "#/definitions/RecognizerSetWithPriority"
     }
   ],
   "definitions": {
@@ -604,6 +610,54 @@
           "type": "string",
           "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
           "const": "CustomAction.TextInputPlus"
+        },
+        "$designer": {
+          "title": "Designer information",
+          "type": "object",
+          "description": "Extra information for the Bot Framework Composer."
+        }
+      }
+    },
+    "CustomAction.WriteStorage": {
+      "$role": "implements(Microsoft.IDialog)",
+      "title": "CustomAction.WriteStorage",
+      "description": "Write to storage directly",
+      "type": "object",
+      "required": [
+        "$kind"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "title": "Tooling property",
+          "description": "Open ended property for tooling."
+        }
+      },
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/stringExpression",
+          "title": "Property",
+          "description": "Property (named location to store information).",
+          "examples": [
+            "user.age"
+          ]
+        },
+        "value": {
+          "$ref": "#/definitions/valueExpression",
+          "title": "Value",
+          "description": "New value or expression.",
+          "examples": [
+            "='milk'",
+            "=dialog.favColor",
+            "=dialog.favColor == 'red'"
+          ]
+        },
+        "$kind": {
+          "title": "Kind of dialog object",
+          "description": "Defines the valid properties for the component you are configuring (from a dialog .schema file)",
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
+          "const": "CustomAction.WriteStorage"
         },
         "$designer": {
           "title": "Designer information",
@@ -4337,6 +4391,9 @@
           "$ref": "#/definitions/CustomAction.TextInputPlus"
         },
         {
+          "$ref": "#/definitions/CustomAction.WriteStorage"
+        },
+        {
           "$ref": "#/definitions/Microsoft.AdaptiveDialog"
         },
         {
@@ -4557,6 +4614,9 @@
         },
         {
           "$ref": "#/definitions/Microsoft.QnAMakerRecognizer"
+        },
+        {
+          "$ref": "#/definitions/RecognizerSetWithPriority"
         },
         {
           "$ref": "#/definitions/Microsoft.CrossTrainedRecognizerSet"
@@ -9095,6 +9155,51 @@
           "type": "string",
           "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
           "const": "Microsoft.UrlEntityRecognizer"
+        },
+        "$designer": {
+          "title": "Designer information",
+          "type": "object",
+          "description": "Extra information for the Bot Framework Composer."
+        }
+      }
+    },
+    "RecognizerSetWithPriority": {
+      "$role": "implements(Microsoft.IRecognizer)",
+      "title": "Recognizer Set With Priority",
+      "description": "Creates the union of the intents and entities of the recognizers in the set.",
+      "type": "object",
+      "required": [
+        "recognizers",
+        "$kind"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "title": "Tooling property",
+          "description": "Open ended property for tooling."
+        }
+      },
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id",
+          "description": "Optional unique id using with RecognizerSet.  Other recognizers should return 'DeferToRecognizer_{Id}' intent when cross training data for this recognizer."
+        },
+        "recognizers": {
+          "type": "array",
+          "title": "Recognizers",
+          "description": "List of Recognizers defined for this set.",
+          "items": {
+            "$kind": "Microsoft.IRecognizer",
+            "$ref": "#/definitions/Microsoft.IRecognizer"
+          }
+        },
+        "$kind": {
+          "title": "Kind of dialog object",
+          "description": "Defines the valid properties for the component you are configuring (from a dialog .schema file)",
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$",
+          "const": "RecognizerSetWithPriority"
         },
         "$designer": {
           "title": "Designer information",

@@ -1,0 +1,43 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "TsSskB",
+    "name": "GuessNumber",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "JDpEKu"
+      },
+      "actions": [
+        {
+          "$kind": "CustomAction.WriteStorage",
+          "$designer": {
+            "id": "fXvNhB"
+          },
+          "property": "${turn.activity.channelId}/conversationusers-config/${turn.activity.conversation.id}",
+          "value": {
+            "Global": true
+          }
+        },
+        {
+          "$kind": "CustomAction.InvokeProactiveActivity",
+          "$designer": {
+            "id": "cn7HD1"
+          },
+          "invokeFrom": "turn.activity.from",
+          "activity": "${CustomAction.InvokeProactiveActivity_Activity_cn7HD1()}"
+        }
+      ]
+    }
+  ],
+  "generator": "GuessNumber.lg",
+  "recognizer": "GuessNumber.lu.qna",
+  "id": "GuessNumber"
+}

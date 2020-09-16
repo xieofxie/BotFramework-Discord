@@ -1,0 +1,12 @@
+[import](common.lg)
+
+# SendActivity_b1qFEc()
+- Let's guess a number between 0~99!
+# NumberInput_Prompt_DUvxtB()
+- What's your guess?
+# SendActivity_nhg4Qp()
+- Congratulations! You guess it in ${dialog.tries} tries!
+# SendActivity_mPBkZn()
+- It is too big..
+# SendActivity_1nAb0s()
+- Somehow small.

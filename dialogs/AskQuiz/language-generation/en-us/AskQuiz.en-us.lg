@@ -1,10 +1,5 @@
 [import](common.lg)
 
-# CustomAction.InvokeProactiveActivity_Activity_nWrJeM()
-[Activity
-	type = event
-    name = Quiz
-]
 # CustomAction.InvokeProactiveActivity_Activity_C6SHS7()
 [Activity
 	type = event
@@ -17,9 +12,4 @@
 	type = event
     name = Quiz
     locale = ${turn.activity.locale}
-]
-# CustomAction.InvokeProactiveActivity_Activity_RpJQOu()
-[Activity
-	type = event
-    name = Quiz
 ]

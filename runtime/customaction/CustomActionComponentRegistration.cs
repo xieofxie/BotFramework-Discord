@@ -16,6 +16,7 @@ namespace Microsoft.BotFramework.Composer.CustomAction
             yield return new DeclarativeType<MultiplyDialog>(MultiplyDialog.Kind);
             yield return new DeclarativeType<InvokeProactiveActivity>(InvokeProactiveActivity.Kind);
             yield return new DeclarativeType<TextInputPlus>(TextInputPlus.Kind);
+            yield return new DeclarativeType<WriteStorage>(WriteStorage.Kind);
         }
 
         public IEnumerable<JsonConverter> GetConverters(ResourceExplorer resourceExplorer, SourceContext sourceContext)

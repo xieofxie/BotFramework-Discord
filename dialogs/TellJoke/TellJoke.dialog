@@ -27,6 +27,10 @@
             {
               "property": "dialog.sent",
               "value": "=false"
+            },
+            {
+              "property": "dialog.entities",
+              "value": "=if(turn.activity.entities==null,[],turn.activity.entities)"
             }
           ]
         },
@@ -37,7 +41,7 @@
           },
           "index": "dialog.foreach.index",
           "value": "dialog.foreach.value",
-          "itemsProperty": "turn.activity.entities",
+          "itemsProperty": "dialog.entities",
           "actions": [
             {
               "$kind": "Microsoft.IfCondition",

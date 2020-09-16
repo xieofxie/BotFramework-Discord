@@ -1,0 +1,8 @@
+[import](common.lg)
+
+# CustomAction.InvokeProactiveActivity_Activity_cn7HD1()
+[Activity
+	type = event
+    name = GuessNumber
+    locale = ${turn.activity.locale}
+]

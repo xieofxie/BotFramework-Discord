@@ -1,0 +1,154 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "WtumJq",
+    "name": "GuessNumberEvent",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "NBJYTi"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "PY66Xo"
+          },
+          "assignments": [
+            {
+              "property": "dialog.target",
+              "value": "=rand(0,100)"
+            },
+            {
+              "property": "dialog.tries",
+              "value": "=0"
+            },
+            {
+              "property": "dialog.dummyLoop",
+              "value": "=createArray(1)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "b1qFEc"
+          },
+          "activity": "${SendActivity_b1qFEc()}"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "4CrbjW"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.dummyLoop",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "RiuyTY"
+              },
+              "assignments": [
+                {
+                  "property": "dialog.foreach.index",
+                  "value": "=-1"
+                },
+                {
+                  "property": "dialog.tries",
+                  "value": "=dialog.tries + 1"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.NumberInput",
+              "$designer": {
+                "id": "DUvxtB"
+              },
+              "defaultLocale": "en-us",
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": true,
+              "allowInterruptions": false,
+              "prompt": "${NumberInput_Prompt_DUvxtB()}",
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "property": "dialog.guess"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "g7j40e"
+              },
+              "condition": "dialog.guess == dialog.target",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "nhg4Qp"
+                  },
+                  "activity": "${SendActivity_nhg4Qp()}"
+                },
+                {
+                  "$kind": "Microsoft.BreakLoop",
+                  "$designer": {
+                    "id": "MPvFZL"
+                  }
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.IfCondition",
+                  "$designer": {
+                    "id": "xyC3gZ"
+                  },
+                  "condition": "dialog.guess > dialog.target",
+                  "actions": [
+                    {
+                      "$kind": "Microsoft.SendActivity",
+                      "$designer": {
+                        "id": "mPBkZn"
+                      },
+                      "activity": "${SendActivity_mPBkZn()}"
+                    }
+                  ],
+                  "elseActions": [
+                    {
+                      "$kind": "Microsoft.SendActivity",
+                      "$designer": {
+                        "id": "1nAb0s"
+                      },
+                      "activity": "${SendActivity_1nAb0s()}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "CustomAction.WriteStorage",
+          "$designer": {
+            "id": "4UGp47"
+          },
+          "property": "${turn.activity.channelId}/conversationusers-config/${turn.activity.conversation.id}",
+          "value": {
+            "Global": false
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "GuessNumberEvent.lg",
+  "recognizer": "GuessNumberEvent.lu.qna",
+  "id": "GuessNumberEvent"
+}
